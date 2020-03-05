@@ -6,8 +6,9 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-
+  if (password !== 'TRY AGAIN') {
+    passwordText.value = password;
+  }
 }
 
 // Add event listener to generate button
@@ -31,35 +32,32 @@ function randomSymbol() {
   return symbols[Math.floor(Math.random() * symbols.length)]
 }
 
-// Random function
-const randomFunc = {
-  lower: randomLower,
-  upper: randomUpper,
-  number: randomNumber,
-  symbol: randomSymbol
-};
-
-// Password requirements
-var passLength
-var includeUpper
-var includeLower
-var includeNumbers
-var includeSymbols
-
-
 
 // Password generator
 function generatePassword() {
-  // Ask the user for requirements
-  passLength = prompt('Password length?');
-  includeUpper = confirm('Include uppercase letter?');
-  includeLower = confirm('Include lowercase letter?');
-  includeNumbers = confirm('Include numbers?');
-  includeSymbols = confirm('Include symbols?');
+  // Ask the user for requirements and asign them to variables
+  var passLength = prompt('Password length?');
+  if (passLength > 128 || passLength < 8){
+    alert('Try again, pick a length between 8 and 128');
+    return 'TRY AGAIN'
+  }
+  var includeUpper = confirm('Include uppercase letter?');
+  var includeLower = confirm('Include lowercase letter?');
+  var includeNumbers = confirm('Include numbers?');
+  var includeSymbols = confirm('Include symbols?');
 
 
-  console.log(passLength, includeUpper, includeLower, includeNumbers, includeSymbols);
+  var finalPassword = '';
+  
+
+  for (var i = 0; i < passLength; i++) {
+    finalPassword += 'h';
+  }
 
 
-  return '123';
+
+
+
+
+  return finalPassword;
 }
