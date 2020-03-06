@@ -1,4 +1,4 @@
-# password-generator
+# Password Generator
 
 ## Welcome to Maxwell Hankner's Password Generator
 Instructions: To generate a password, click 'Generate Password' and then follow the prompts. You must enter a password length between 8 and 128 and select at least one type of character to get a result. You can then copy the password and use it for whatever you may wish.
