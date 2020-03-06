@@ -5,11 +5,11 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   // Ask the user for requirements and asign them to variables
   // Ask for the password length
-  var passLength = prompt('Password length?');
+  var passLength = prompt('Password length? (8-128)');
   // If the length is shorter that 8, or longer then 128, ask again
   if (passLength > 128 || passLength < 8){
-    alert('Try again, pick a length between 8 and 128');
-    return 'TRY AGAIN'
+    alert('Try again, pick a length between 8 and 128.');
+    return;
   }
   // Ask if the user would like to include uppercase letters
   var includeUppers = confirm('Include uppercase letter?');
@@ -20,15 +20,26 @@ function writePassword() {
   // Ask if the user would like to include symbols
   var includeSymbols = confirm('Include symbols?');
 
+  if (includeUppers === false && includeLowers === false && includeSymbols === false && includeNumbers === false) {
+    alert('Try again, you must include one type of character.');
+    return;
+  } 
+
   // Run the generate password function with the requrements and length as perameters
-  var password = generatePassword(passLength, includeUppers, includeLowers, includeNumbers, includeSymbols);
+  var password;
+
+  var passwordGood = true;
+  while (passwordGood) {
+    password = generatePassword(passLength, includeUppers, includeLowers, includeNumbers, includeSymbols);
+    if (password !== 'TRY AGAIN') {
+      passwordGood = false;
+    }
+  }
+
   // connect the password area to a variable
   var passwordText = document.querySelector("#password");
 
-  // If the password response is not valid, do not change the passwords value
-  if (password !== 'TRY AGAIN') {
-    passwordText.value = password;
-  }
+  passwordText.value = password;
 }
 
 // Add event listener to generate button, when it is clicked, run the writePassword function
@@ -90,9 +101,44 @@ function generatePassword(passLength, includeUppers, includeLowers, includeNumbe
   }
 
   // Check to see if at least one of each character type was generated in the result
+  var possibleLowercase = 'abcdefghijklmnopqrstuvwxyz';
+  var possibleUppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var possibleNumbers = '1234567890';
+  var possibleSymbols = '!@#$%^&*(){}[]=<>/,.';
 
+  var hasLower = false;
+  var hasUpper = false;
+  var hasNumber = false;
+  var hasSymbol = false;
 
+  for (var i = 0; i < passLength; i++) {
+    for (var x = 0; x < possibleLowercase.length; x++) {
+      if (finalPassword[i] === possibleLowercase[x]) {
+        hasLower = true;
+      }
+    }
+    for (var x = 0; x < possibleUppercase.length; x++) {
+      if (finalPassword[i] === possibleUppercase[x]) {
+        hasUpper = true;
+      }
+    }
+    for (var x = 0; x < possibleNumbers.length; x++) {
+      if (finalPassword[i] === possibleNumbers[x]) {
+        hasNumber = true;
+      }
+    }
+    for (var x = 0; x < possibleSymbols.length; x++) {
+      if (finalPassword[i] === possibleSymbols[x]) {
+        hasSymbol = true;
+      }
+    }
+  }
+  
+  // Return the password result
+  if(includeUppers === hasUpper && includeLowers === hasLower && includeNumbers === hasNumber && includeSymbols === hasSymbol) {
+    return finalPassword;
+  }
 
-  // Return the result
-  return finalPassword;
+  // If the password does not meet requirements, then return try again
+  return 'TRY AGAIN';
 }

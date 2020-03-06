@@ -1,22 +1,31 @@
+<!-- Set document type as HTML -->
 <!DOCTYPE html>
+<!-- English -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Website tap title -->
     <title>Password Generator</title>
+    <!-- Link the style sheet -->
     <link rel="stylesheet" href="assets/styles/style.css" />
   </head>
   <body>
+    <!-- Contains all contents -->
     <div class="wrapper">
+      <!-- Password Generater header -->
       <header>
         <h1>Password Generator</h1>
       </header>
+      <!-- Contains the card elements -->
       <div class="card">
+        <!-- Header of the card -->
         <div class="card-header">
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
+          <!-- Text area for the password generated -->
           <textarea
             readonly
             id="password"
@@ -24,11 +33,13 @@
             aria-label="Generated Password"
           ></textarea>
         </div>
+        <!-- Generate Password call to action button -->
         <div class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
         </div>
       </div>
     </div>
+    <!-- Links the javascript document -->
     <script src="assets/scripts/script.js"></script>
   </body>
 </html>
