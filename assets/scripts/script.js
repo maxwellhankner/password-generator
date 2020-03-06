@@ -7,7 +7,7 @@ function writePassword() {
   // Ask for the password length
   var passLength = prompt('Password length? (8-128)');
   // If the length is shorter that 8, or longer then 128, on not a number, ask again
-  if (passLength > 128 || passLength < 8 || typeof passLength !== 'number'){
+  if (passLength > 128 || passLength < 8 || isNaN(passLength)){
     alert('Try again, pick a length between 8 and 128.');
     return;
   }
