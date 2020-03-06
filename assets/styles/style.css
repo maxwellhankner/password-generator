@@ -1,5 +1,5 @@
 /* Styling for the page contents */
-/* All styling was provided for us */
+/* All styling was provided for us, but the generator button color has been changed */
 *,
 *::before,
 *::after {
@@ -76,7 +76,7 @@ header {
 
 .btn {
   border: none;
-  /* Buttons background color set to a shade of blue */
+  /* Generator button background color set to some shade of blue */
   background-color: rgb(35, 200, 255);
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
